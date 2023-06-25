@@ -25,7 +25,10 @@ The project consists of two main files:
    ```shell
    pip install opencv-python mediapipe numpy pyautogui
 
-##Notes
+
+## Notes
+
 The project assumes that a single hand is being tracked at a time. If multiple hands are present, only the first detected hand will be considered for mouse control.
+
 The project incorporates smoothening techniques to reduce cursor jitter and improve usability.
 The project provides visual feedback by overlaying circles on the video frames to indicate the active modes (moving or clicking) and the cursor position.
