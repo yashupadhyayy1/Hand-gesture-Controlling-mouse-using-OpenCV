@@ -1,47 +1,31 @@
 # Hand Gesture Mouse Controlling
 
-This project utilizes hand tracking and computer vision techniques to control the mouse cursor using hand gestures. By detecting and tracking hand landmarks, it enables the user to move the mouse cursor and perform click actions using specific hand gestures.
+This project enables controlling the computer mouse using hand gestures captured by a webcam. It utilizes the OpenCV and Mediapipe libraries to detect and track hand landmarks, and performs actions based on specific gestures.
 
-## Requirements
-
-To run this project, you need the following dependencies:
+## Prerequisites
 
 - Python 3.x
-- OpenCV (cv2)
-- Mediapipe
-- Numpy
-- PyAutoGUI
+- OpenCV library
+- Mediapipe library
+- Numpy library
+- PyAutoGUI library
 
-You can install the required libraries using pip:
+## Project Structure
 
-```sudo
-pip install opencv-python mediapipe numpy pyautogui
-```
+The project consists of two main files:
 
+1. `handtracking2d.py`: This file contains the `handDetector` class, which encapsulates the hand detection and tracking functionality. It utilizes the `mpHands` module from Mediapipe to detect hand landmarks and provides methods for finding hands, positions, finger states, distances, etc. The `main` function sets up the webcam, initializes the `handDetector`, and continuously processes video frames to detect and track hand gestures.
+
+2. `mouse.py`: This file enables mouse control using hand gestures. It imports the `handDetector` class from `handtracking2d.py` and utilizes it to detect hand landmarks and recognize specific gestures. It captures video frames from the webcam, tracks the movement of the index finger, and moves the mouse cursor accordingly. It also detects when the index and middle fingers are close together to simulate a mouse click.
 
 ## Usage
 
-1. Run the `handtracking2d.py` script to enable hand tracking and landmark detection.
+1. Install the necessary libraries by running the following command:
 
-   ```bash
-   python handtracking2d.py
+   ```shell
+   pip install opencv-python mediapipe numpy pyautogui
 
-This script uses the computer's webcam to capture video frames and detects hand landmarks using the Mediapipe library. The hand landmarks are displayed on the video feed.
-
-Once the hand landmarks are detected, you can control the mouse cursor using the following gestures:
-
-Moving Mode: Extend your index finger while keeping other fingers closed. Move your hand to control the mouse cursor. The cursor position will follow the movement of your index finger.
-
-Clicking Mode: Extend both your index and middle fingers. Bring the tips of the fingers close together to trigger a mouse click. The cursor will display a circle when the fingers are close enough, indicating that a click action will be performed.
-
-The mouse.py script should be run alongside the `handtracking2d.py` script.
-This script uses the hand landmarks detected by handtracking2d.py to control the mouse cursor on the screen. The cursor position is mapped to the detected hand movement, and click actions are performed based on the hand gesture.
-
-The video feed from the webcam will display the hand landmarks and the movement of the mouse cursor. The script also shows the frame rate (FPS) on the screen.
-
-Press the Esc key to exit the program.
-
-Note: Adjustments to the frame size and other parameters can be made in the code to fit your specific webcam setup and hand movement preferences.
-
-Conclusion
-The hand gesture mouse controlling project enables users to control the mouse cursor using specific hand gestures. By leveraging hand tracking and computer vision techniques, it provides a hands-free and intuitive way to interact with the computer, opening up possibilities for various applications and accessibility improvements.
+##Notes
+The project assumes that a single hand is being tracked at a time. If multiple hands are present, only the first detected hand will be considered for mouse control.
+The project incorporates smoothening techniques to reduce cursor jitter and improve usability.
+The project provides visual feedback by overlaying circles on the video frames to indicate the active modes (moving or clicking) and the cursor position.
